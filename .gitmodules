@@ -1,0 +1,4 @@
+[submodule "src/common"]
+	path = src/common
+	url = https://github.com/dgmteam/iagency-common.git
+  branch = develop

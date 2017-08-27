@@ -1,0 +1,251 @@
+@import '~assets/styles/toastr';
+@import '~assets/styles/bootstrap';
+@import '~font-awesome/css/font-awesome.css';
+@import '~assets/redactor/redactor';
+
+.bg-default {
+  background-color: $default !important;
+}
+.btn {
+  border-radius: 2px;
+}
+.btn-dgm {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  padding: 10px 30px;
+  text-transform: uppercase;
+}
+.btn-normal {
+  color: #9b9b9b;
+  background-color: #fff;
+  border: solid 1px #ccd1d9;
+  &:hover,
+  &:focus {
+    background-color: #f5f5f5;
+  }
+}
+.btn-default {
+  background-color: $default;
+  &:hover,
+  &:focus {
+    background-color: darken($default, 10%);
+  }
+}
+.btn-dropdown {
+  min-height: 45px;
+  font-family: Montserrat;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #505458;
+  border-radius: 2px;
+  background-color: fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 100%;
+  background-color: #fff;
+  &:focus {
+    box-shadow: 0 0 2px 0 $brand-primary;
+    border: solid 1px $brand-primary;
+  }
+}
+.text-default {
+  color: $default;
+}
+.page-wrapper {
+  padding-top: 50px;
+  font-family: Montserrat;
+}
+.form-group {
+  .form-label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.43;
+    color: $default;
+    &.required:after {
+      content: ' *';
+      color: $brand-danger;
+    }
+  }
+  .form-control {
+    @extend .btn-dropdown;
+  }
+}
+.full-width {
+  width: 100%;
+}
+.header {
+  height: 260px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 0 10%;
+    .title {
+      font-size: 48px;
+      line-height: 1.04;
+      color: #fff;
+      padding-top: 60px;
+    }
+    .breadcrumbs {
+      font-size: 10px;
+      line-height: 2;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.dropdown-item {
+  font-size: 14px;
+  line-height: 1.43;
+  color: $default;
+  &:focus,
+  &:hover {
+    color: #fff !important;
+    background-color: $primary;
+    .fill {
+      fill: #fff;
+    }
+  }
+  svg {
+    margin-right: 10px;
+    margin-bottom: -3px;
+  }
+}
+.tabset {
+  position: relative;
+  top: -70px;
+  ul.nav.nav-tabs {
+    height: 70px;
+    background-color: transparent;
+    border: none;
+    margin: 0 10%;
+    li.nav-item {
+      margin-bottom: 0;
+      background-color: #f5f5f5;
+      box-shadow: inset -1px -1px 0 0 #eee;
+      a.nav-link {
+        border: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        padding: 25px 75px;
+        color: $default;
+        &.active {
+          box-shadow: inset -1px 0 0 0 #eee;
+          color: $primary;
+        }
+        &.disabled {
+          color: #ccc;
+        }
+      }
+    }
+  }
+  tab {
+    margin: 0 10%;
+    padding: 40px 35px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+.rd-container {
+  display: none;
+  border: 1px solid #333;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  z-index: 999;
+}
+.rd-back,
+.rd-next {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: normal normal normal 14px/1 FontAwesome;
+}
+.rd-back {
+  float: left;
+}
+.rd-back::before {
+  content: "\f177";
+}
+.rd-next {
+  float: right;
+}
+.rd-next::before {
+  content: "\f178";
+}
+.rd-day-body {
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+}
+.rd-day-prev-month,
+.rd-day-next-month {
+  color: #999;
+}
+.rd-time {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  min-width: 80px;
+}
+.rd-day-selected,
+.rd-time-selected,
+.rd-time-option:hover {
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+}
+.rd-time-selected {
+  padding: 5px;
+}
+.rd-time-list {
+  display: none;
+  position: absolute;
+  overflow-y: scroll;
+  max-height: 160px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  color: #333;
+}
+.rd-time-option {
+  padding: 5px;
+}
+.redactor-input {
+  border: solid 1px #ccd1d9;
+}
+.press-conference-details-tabs {
+  .nav-tabs {
+    margin-top: -70px;
+    height: 70px;
+    border: none;
+    li {
+      background-color: #f5f5f5;
+      a {
+        padding: 25px 75px;
+        height: 100%;
+        font-family: Montserrat;
+        font-size: 14px;
+        line-height: 1.43;
+        text-align: center;
+        color: #505458;
+        text-transform: uppercase;
+        &.active {
+          color: #138090;
+        }
+      }
+    }
+  }
+  .tab-content {
+    padding: 30px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+  }
+}

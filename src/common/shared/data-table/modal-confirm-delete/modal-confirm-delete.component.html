@@ -1,0 +1,27 @@
+<!--region:modal-confirm-delete-->
+<div bsModal #modalConfirmDelete="bs-modal" [config]="{ backdrop: 'static' }" class="modal modal-danger fade modal-slide-from-bottom in">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{ 'Confirmation' }}
+          <button type="button" (click)="modalConfirmDelete.hide()" class="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <ng-container #modalBody></ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="modalConfirmDelete.hide()" class="btn btn-default">Cancel</button>
+        <button type="button" (click)="confirmDelete(); modalConfirmDelete.hide();" class="btn btn-success">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--region:modal-confirm-delete-->
+
+<ng-template #defaultModalBody let-entity>
+  <span i18nn>Are you sure you want to delete {{ entity?.name }}</span>
+</ng-template>

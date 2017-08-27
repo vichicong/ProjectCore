@@ -1,0 +1,47 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dataTables_length margin-bottom-10">
+        Show
+        <data-table-quantity></data-table-quantity>
+        entries
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="dataTables_filter">
+        <ng-container #customFilterVcr></ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 data-table">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <data-table-footer [page]="paging.page" [count]="paging.total" [quantity]="list?.length" [quantityPerPage]="paging.quantity" [useLink]="usePageLink" (pageChanged)="onPageChanged($event)"></data-table-footer>
+</div>
+
+<modal-confirm-delete (deleteConfirmed)="onDeleteConfirmed($event)"></modal-confirm-delete>
+
+<ng-template #defaultFilterTpl let-search let-filter="$filter" let-clear="$clearSearch">
+  <div class="input-group margin-bottom-10">
+    <input type="search" class="form-control input-search" placeholder="Search" (keyup)="search($event)" [value]="filter && filter.query ? filter.query : ''">
+    <span class="input-group-addon" *ngIf="!filter?.query"><i class="fa fa-search"></i></span>
+    <span class="input-group-addon" *ngIf="filter?.query" (click)="clear()"><i class="fa fa-close"></i></span>
+  </div>
+</ng-template>
+
+<ng-template #defaultToastTpl let-item let-response="$response">
+  <span class="data-table-message-success">{{ item?.name }} deleted successfully</span>
+  <span class="data-table-message-error">
+    <ng-container *ngIf="response && response.messages else defaultErrorTpl">
+      <p *ngFor="let e of response.messages">{{e}}</p>
+    </ng-container>
+    <ng-template #defaultErrorTpl>Delete {{item?.name}} failed</ng-template>
+  </span>
+</ng-template>
+
+<div class="data-table-hidden" #toastMessageContainer style="display:none">
+  <ng-container #toastMessageVcr></ng-container>
+</div>
+

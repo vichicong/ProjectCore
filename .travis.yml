@@ -1,0 +1,60 @@
+language: node_js
+sudo: true
+dist: trusty
+group: deprecated-2017Q2
+node_js:
+- '7.9'
+branches:
+  only:
+  - master
+  - develop
+  - "/^release.*?v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+addons:
+  ssh_known_hosts:
+  - iagency.com.vn
+  - uat.iagency.com.vn
+  - sit.iagency.com.vn
+  - dev.iagency.com.vn
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+before_install:
+- openssl aes-256-cbc -K $encrypted_d8d7f64a20e4_key -iv $encrypted_d8d7f64a20e4_iv
+  -in travis/key_rsa.enc -out key_rsa -d
+- npm install -g @angular/cli@1.2.6
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+install:
+- npm install
+script:
+- ng test --progress false --log-level info --watch false
+cache:
+  directories:
+  - node_modules
+before_deploy:
+- eval "$(ssh-agent -s)"
+- chmod 600 key_rsa
+- ssh-add key_rsa
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: travis/deploy.sh
+  on:
+    tags: true
+    branches:
+      only:
+      - master
+      - "/^release.*?v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+    condition: "$TRAVIS_TAG =~ ^release.*$"
+after_success:
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    on_failure: always
+    on_success: change
+    rooms:
+      secure: ia4qh2yrwY5HrYq6ZjRfAqWdVnjRleRxFgF//tXZwYQ9f72OzDVGkyevyrfI1ZcFuXJCKIYjSSqekqAqbfES6NGTc3BJN/Ix63LJp9eGKRgYE/fheDNcMJqdYPphvKZ4GU0oYtvlImPGADj1b+wg/txEu2cUbvhzqcdUi+1BwfkeIPxCmjG6ABWG50EhS2A1DEq6qj23EeMbp+EgrWNVy76uuhEPyfxAWjXFISXSA/JYzCW0QICKaD/sAgatJtew1ZLCFJYl+X9wFGTYEFLYiATUXhmfXyPX/1/hRMB+VjMx73BVQsPuz0bfYQ7+qHQPuRr3NLDGJLInJjVGD+XHfTSEvA5Qn9lwOSwrez3vZw9lPqoODeh7pgEUNYvge3yf7MAC2B9cSZlvGHu3Z1z4aFVBtgEJuKDSgGAhYmRoW1Zwj3zHWLt6mzFNPuYPCngVhuMoRsgeCU5Yzs2ZaINH8lkP3bsrm82vRTHe5yOUCw+KKx463ZA32FmN1q3mGizixxmTt8RXvIQDLoqR1HqonKWKcPCL+yb5FoT1blZheNR3xNBOiE1omKAmma+Pwx+LDeSdwtzx0A2vg5f5iEJ0HzwSgpm+21qSfKkpFc3SmSA5t5hJ70Gq6DHxvQCn2i2vP+J5oAg0YeRuWjshFriL6k6W2pOXkqz+0WXlaIWQDlg=

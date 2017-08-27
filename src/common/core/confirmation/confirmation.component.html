@@ -1,0 +1,24 @@
+<div bsModal="bsModal" #confirmationModal="bs-modal" [config]="{ backdrop: 'static' }" class="modal modal-danger fade modal-slide-from-bottom in">
+  <div [class.modal-sm]="size==='sm'" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ modalTitle || 'Confirmation' }}</h4>
+        <button type="button pull-right" (click)="dismiss()" class="close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="message">
+          <p [innerHTML]="message"></p>
+        </ng-container>
+        <ng-container *ngIf="!message">
+          <ng-content select=".modal-content-holder"></ng-content>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="dismiss()" class="btn btn-secondary">Cancel</button>
+        <button type="button" (click)="confirm()" class="btn btn-success">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

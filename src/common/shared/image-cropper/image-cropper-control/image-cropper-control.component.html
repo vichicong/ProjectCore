@@ -1,0 +1,35 @@
+<div class="image-cropper">
+  <label #container [style.min-height.px]="image?.url ? 0 : minHeight">
+    <div *ngIf="isEmpty" class="icon">
+      <i class="fa fa-cloud-upload"></i>
+    </div>
+    <img *ngIf="displayedUrl || imageUrl" [src]="displayedUrl || imageUrl" class="preview img-rounded"/>
+    <input type="file" (change)="openCropperWindow($event.target)" [disabled]="!isEmpty" accept="image/*" class="ghost"/>
+    <div *ngIf="!isEmpty" class="overlay">
+      <div class="btn-group">
+        <a (click)="remove($event)" class="btn-remove">
+          <i class="fa fa-trash"></i></a>
+      </div>
+    </div>
+  </label>
+</div>
+<div bsModal="bsModal" #cropperModal="bs-modal" [config]="{ backdrop: &quot;static&quot; }" class="modal fade modal-slide-from-bottom in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-fake-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)="cropperModal.hide()" class="close">
+          <i class="icmn-cross3"></i>
+        </button>
+        <h4 class="modal-title">{{ modalTitle }}</h4>
+      </div>
+      <div #modalBody class="modal-body">
+        <image-cropper-modal #cropper (export)="saveData($event)" [settings]="settings" [cropperOptions]="cropperOptions" size="lg"></image-cropper-modal>
+      </div>
+      <div class="modal-footer">
+        <button (click)="cropperModal.hide()" type="button" class="btn btn-default">{{ btnCloseText }}</button>
+        <button (click)="cropper.exportCanvas()" type="button" class="btn btn-success">{{ btnSaveText }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <loading *ngIf="isLoading" [isBlocking]="false"></loading>
+  <div *ngIf="loadError" class="alert alert-warning">{{ loadImageErrorText }}</div>
+  <div class="cropper">
+    <img *ngIf="imageUrl" #image class="img-rounded"
+      alt="image" [src]="imageUrl" (load)="imageLoaded($event)"
+      crossorigin="anonymous" (error)="imageLoadError($event)" />
+  </div>
+</div>

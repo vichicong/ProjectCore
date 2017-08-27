@@ -1,0 +1,3 @@
+<select (change)="onChange(select.value)" class="form-control input-sm" #select>
+  <option *ngFor="let q of quantities" [value]="q" [selected]="q === currentValue">{{q}}</option>
+</select>

@@ -1,0 +1,85 @@
+$color-red-600         : #f96868 !default;
+$color-pink-800        : #e53b75 !default;
+$color-purple-800      : #6d45bc !default;
+$color-indigo-800      : #465bd4 !default;
+$color-blue-800        : #324b81 !default;
+$color-cyan-800        : #37a9b7 !default;
+$color-teal-800        : #178d81 !default;
+$color-green-800       : #279566 !default;
+$color-light-green-800 : #70a532 !default;
+$color-yellow-800      : #fbc02d !default;
+$color-orange-800      : #e98f2e !default;
+$color-brown-800       : #604420 !default;
+$color-grey-800        : #424242 !default;
+$color-blue-grey-700   : #37474f !default;
+
+.id-display {
+  &.square {
+    .id-image, .id-initials {
+      border-radius: 0;
+      border: solid 1px #eee;
+    }
+  }
+  .id-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color: #ddd;
+  }
+
+  .id-initials {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #ddd;
+    color: #777;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: uppercase;
+    &.id-initial-class-0 {
+      background-color: $color-red-600;
+      color: #fff;
+    }
+    &.id-initial-class-1 {
+      background-color: $color-purple-800;
+      color: #fff;
+    }
+    &.id-initial-class-2 {
+      background-color: $color-blue-grey-700;
+      color: #fff;
+    }
+    &.id-initial-class-3 {
+      background-color: $color-orange-800;
+      color: #fff;
+    }
+    &.id-initial-class-4 {
+      background-color: $color-cyan-800;
+      color: #fff;
+    }
+    &.id-initial-class-5 {
+      background-color: $color-teal-800;
+      color: #fff;
+    }
+    &.id-initial-class-6 {
+      background-color: $color-green-800;
+      color: #fff;
+    }
+    &.id-initial-class-7 {
+      background-color: $color-light-green-800;
+      color: #fff;
+    }
+    &.id-initial-class-8 {
+      background-color: $color-brown-800;
+      color: #fff;
+    }
+    &.id-initial-class-9 {
+      background-color: $color-grey-800 ;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+export { ErrorPipe } from './pipes/error.pipe'
+export { FileSizePipe } from './pipes/file-size.pipe'
+export { FormValidationComponent } from './form-validation/form-validation.component'
+export { IdDisplayComponent } from './id-display/id-display.component'
+export { PaginationComponent } from './pagination/pagination.component'
+export { SharedModule } from './shared.module'

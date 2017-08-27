@@ -1,0 +1,23 @@
+<div [class.square]="square" class="id-display">
+  <div *ngIf="displayImage !== undefined"
+    [style.width.px]="size"
+    [style.height.px]="size"
+    [backgroundImage]="displayImage"
+    placement="bottom"
+    [tooltip]="tooltip"
+    [isDisabled]="noTooltip"
+    container="body"
+    class="id-image">
+  </div>
+  <div *ngIf="displayImage === undefined && initials !== undefined"
+    [style.width.px]="size"
+    [style.height.px]="size"
+    [style.line-height.px]="size"
+    [style.font-size.px]="fontSize"
+    [ngClass]="initialClass"
+    placement="bottom"
+    [tooltip]="tooltip"
+    [isDisabled]="noTooltip"
+    container="body"
+    class="id-initials">{{ initials }}</div>
+</div>

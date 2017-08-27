@@ -1,0 +1,37 @@
+<div class="row margin-top-10">
+  <div class="col-md-6">
+    <div class="dataTables_info" role="status">
+      <span *ngIf="quantity">Showing {{ from }} to {{ to }} of {{ count }} entries</span>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="dataTables_paginate paging_simple_numbers">
+      <ng-container *ngIf="useLink">
+        <ul class="pagination margin-vertical-0">
+          <li class="paginate_button page-item previous" [class.disabled]="!hasPrev">
+            <a role="button" [routerLink]="getLink(page - 1)" tabindex="0" class="page-link">Previous</a>
+          </li>
+          <li *ngFor="let p of pages" [class.active]="p === page" class="paginate_button page-item">
+            <a class="page-link" [routerLink]="getLink(p)">{{ p }}</a>
+          </li>
+          <li class="paginate_button page-item next" [class.disabled]="!hasNext">
+            <a role="button" [routerLink]="getLink(page + 1)" class="page-link">Next</a>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="!useLink">
+        <ul class="pagination margin-vertical-0">
+          <li class="paginate_button page-item previous" [class.disabled]="!hasPrev">
+            <button role="button" (click)="goToPage(page - 1)" tabindex="0" class="page-link">Previous</button>
+          </li>
+          <li *ngFor="let p of pages" [class.active]="p === page" class="paginate_button page-item">
+            <button role="button" class="page-link" (click)="goToPage(p)">{{ p }}</button>
+          </li>
+          <li class="paginate_button page-item next" [class.disabled]="!hasNext">
+            <button role="button" (click)="goToPage(page + 1)" class="page-link">Next</button>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+  </div>
+</div>
